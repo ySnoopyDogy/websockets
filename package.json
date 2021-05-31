@@ -1,0 +1,27 @@
+{
+  "name": "websockets",
+  "version": "0.0.1",
+  "description": "meu primeiro projeto com websockets uwuw",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ySnoopyDogy/websockets.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ySnoopyDogy/websockets/issues"
+  },
+  "homepage": "https://github.com/ySnoopyDogy/websockets#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "socket.io": "^4.1.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}
