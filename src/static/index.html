@@ -1,54 +1,36 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Socket.IO chat</title>
+    <title>Menhera-Chat</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <ul id="messages"></ul>
-    <form id="form" action="">
-      <input id="input" autocomplete="off" /><button>Send</button>
-    </form>
-    <script src="/socket.io/socket.io.js"></script>
+    <header class="header">
+      <h1>Menhera Chat</h1>
+    </header>
+    <div class="container">
+      <div class="message-area">
+        <ul id="messages" class="messages">
+        </ul>
+      </div>
+      <div class="user-control">
+        <form id="nickname">
+          <input type="text" id="newnick" autocomplete="off" />
+          <br />
+          <button>Mudar Nick</button>
+        </form>
+      </div>
+    </div>
+    <div class="send-area">
+      <form id="form">
+        <input id="input" class="input" autocomplete="off" />
+        <button>Send</button>
+      </form>
+    </div>
 
-    <script>
-      var socket = io();
-
-      var messages = document.getElementById("messages");
-      var form = document.getElementById("form");
-      var input = document.getElementById("input");
-
-      form.addEventListener("submit", function (e) {
-        e.preventDefault();
-        if (input.value) {
-          socket.emit("chat message", input.value);
-          input.value = "";
-        }
-      });
-       
-      socket.on("conn", (data) => {
-        switch (data.type) {
-          case "add":
-            var item = document.createElement("li");
-            item.textContent = `${data.user} entrou na conversa`;
-            messages.appendChild(item);
-            window.scrollTo(0, document.body.scrollHeight);
-            break;
-          case "disconnect":
-            var item = document.createElement("li");
-            item.textContent = `${data.user} saiu da conversa`;
-            messages.appendChild(item);
-            window.scrollTo(0, document.body.scrollHeight);
-            break;
-        }
-      });
- 
-      socket.on("chat message", function (msg) {
-        var item = document.createElement("li");
-        item.textContent = msg;
-        messages.appendChild(item);
-        window.scrollTo(0, document.body.scrollHeight);
-      });
-    </script>
+    <div class="scripts">
+      <script src="/socket.io/socket.io.js"></script>
+      <script src="./script.js"></script>
+    </div>
   </body>
 </html>

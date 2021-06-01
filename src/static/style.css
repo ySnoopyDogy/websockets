@@ -1,14 +1,122 @@
 body {
   margin: 0;
+  background-color: dimgray;
   padding-bottom: 3rem;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
     Arial, sans-serif;
 }
+.header {
+  border-bottom: 2px solid black;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.container {
+  display: flex;
+}
+
+.message-area {
+  width: 60%;
+  border-right: 2px solid black;
+  background-color: rgb(128, 128, 128);
+}
+
+.messages {
+  display: flex;
+  flex-direction: column;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+li {
+  padding: 0.5rem 1rem;
+  margin-bottom: 10px;
+  width: max-content;
+  border: 1px solid black;
+  border-radius: 20px;
+}
+
+.incoming-message {
+  align-self: flex-start;
+  background-color: rgb(200, 149, 248);
+}
+
+.own-message {
+  align-self: flex-end;
+  background-color: rgb(146, 130, 238);
+}
+
+.name {
+  text-decoration: underline;
+  font-size: smaller;
+  color: rgb(255, 255, 255);
+}
+
+.msg {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.conn-info {
+  background-color: rgba(27, 221, 156, 0.829);
+  align-self: center;
+  text-align: center;
+}
+.nicks {
+  background-color: rgb(240, 142, 86);
+  align-self: center;
+  text-align: center;
+}
+
+.user-control {
+  border-right: 2px solid black;
+  background: rgba(0, 0, 0, 0.15);
+  padding: 0.25rem;
+  width: 40%;
+  right: 0;
+  display: flex;
+  position: fixed;
+  height: max-content;
+  box-sizing: border-box;
+}
+
+.user-control input {
+  border: none;
+  padding: 0 1rem;
+  flex-grow: 1;
+  border-radius: 2rem;
+  margin: 0.25rem;
+  height: 30px;
+}
+
+.user-control input:focus {
+  outline: none;
+}
+
+.user-control form {
+  display: inline-flex;
+}
+
+.user-control button {
+  background: #333;
+  border: none;
+  padding: 0 1rem;
+  margin: 0.25rem;
+  border-radius: 3px;
+  outline: none;
+  color: #fff;
+}
+
+.gray {
+  background-color: #333;
+}
 
 #form {
+  border-right: 2px solid black;
   background: rgba(0, 0, 0, 0.15);
   padding: 0.25rem;
   position: fixed;
+  width: 60%;
   bottom: 0;
   left: 0;
   right: 0;
@@ -17,14 +125,14 @@ body {
   box-sizing: border-box;
   backdrop-filter: blur(10px);
 }
-#input {
+.input {
   border: none;
   padding: 0 1rem;
   flex-grow: 1;
   border-radius: 2rem;
   margin: 0.25rem;
 }
-#input:focus {
+.input:focus {
   outline: none;
 }
 #form > button {
@@ -35,16 +143,4 @@ body {
   border-radius: 3px;
   outline: none;
   color: #fff;
-}
-
-#messages {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-}
-#messages > li {
-  padding: 0.5rem 1rem;
-}
-#messages > li:nth-child(odd) {
-  background: #efefef;
 }
