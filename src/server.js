@@ -1,5 +1,5 @@
 
-const express = require('express')
+const express = require('express');
 const app = express();
 const http = require('http').Server(app);
 const io = require('socket.io')(http);
@@ -33,16 +33,29 @@ io.on('connection', (socket) => {
   })
 
   socket.on('message', msg => {
+    socket.broadcast.emit('typing', { typing: false });
     socket.broadcast.emit('message', { message: msg, author: nicknames.get(socket.id) });
   });
 
   socket.on('change-nick', data => {
-    io.emit('change-nick', { oldNick: nicknames.get(data.socketID), newNick: data.nickname })
+    io.emit('change-nick', { oldNick: nicknames.get(data.socketID), newNick: data.nickname, userID: socket.id })
     nicknames.set(data.socketID, data.nickname)
   })
 
-  socket.emit("force nickname change", nicknames.get(socket.id))
+  socket.on('typing-start', () => {
+    socket.broadcast.emit('typing-start', nicknames.get(socket.id));
+  })
 
+  socket.emit("new-member", nicknames.get(socket.id))
+
+  socket.on('help', () => {
+    const entries = nicknames.entries()
+    const arr = []
+    for (const [id, nick] of entries) {
+      arr.push({ id, nick })
+    }
+    socket.emit('ta ai', arr)
+  })
 });
 
 http.listen(port, () => {
